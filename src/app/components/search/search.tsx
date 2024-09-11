@@ -54,7 +54,7 @@ export default function Search() {
 <div className="search-not-found">
     <Image src={cuteCat} alt="oops, not found"/>
     <p>Oops audet.blog is new</p>
-    <p>We don't have what you are looking for yet but you can contact us to make a request</p>
+    <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
 </div>)
 }
         </div>
