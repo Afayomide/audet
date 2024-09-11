@@ -35,11 +35,12 @@ return (
     </form>
 
     <div className="nav-links-container">
-    <Link className={`nav-link ${pathname === '/genres' ? 'active' : ''}`} href="/genres">Genres</Link>
-        <Link className={`nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Albums</Link>
-        <Link className={`nav-link ${pathname === '/latestsongs' ? 'active' : ''}`} href="/latestsongs">Latest Music</Link>
-        <Link className={`nav-link ${pathname === '/makerequest' ? 'active' : ''}`} href="/makerequest">Make Request</Link>
+    <Link className={`nav-link ${pathname === '/genre' ? 'active' : ''}`} href="/genre">Genre</Link>
+        <Link className={`nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Songs</Link>
         <Link className={`nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</Link>
+        <Link className={`nav-link ${pathname === '/signup' ? 'active' : ''}`} href="/signup">Signup</Link>
+        <Link className={`nav-link ${pathname === '/login' ? 'active' : ''}`} href="/login">Login</Link>
+
 
     </div>
 </nav>

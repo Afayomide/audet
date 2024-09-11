@@ -50,8 +50,8 @@ return (
     <div className="mobile-nav-links-container">
     <Link className={`mobile-nav-link ${pathname === '/genres' ? 'active' : ''}`} href="/genres">Genres</Link>
         <Link className={`mobile-nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Albums</Link>
-        <Link className={`mobile-nav-link ${pathname === '/latestsongs' ? 'active' : ''}`} href="/latestsongs">Latest Music</Link>
-        <Link className={`mobile-nav-link ${pathname === '/makerequest' ? 'active' : ''}`} href="/makerequest">Make Request</Link>
+        <Link className={`mobile-nav-link ${pathname === '/signup' ? 'active' : ''}`} href="/signup">Signup</Link>
+        <Link className={`mobile-nav-link ${pathname === '/login' ? 'active' : ''}`} href="/login">Login</Link>
         <Link className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</Link>
     </div>    
 </div>

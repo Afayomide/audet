@@ -1,9 +1,12 @@
 "use client"
 import "./search.css"
+import Image from "next/image"
+import Link from "next/link"
 import { useSearchParams } from 'next/navigation'
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { MusicBlog } from "@/types/media"
+import cuteCat from "../../../../public/images/cutecat.jpeg"
 
 
 
@@ -33,19 +36,28 @@ export default function Search() {
         fetchData()
        },[search])
     return(
-        <div>
+        <div className="search-result-blogs-container">
+            <h3>Search Results for <span>{search}</span></h3>
+        <div className="search-result-blogs">
 { should ? (
     results.map((result)=>(
           <div  key={result._id}>
-                        <img src={result.cover}/>
+            <Link className="search-result-blog" href={result._id}>
+                        <img className="music-cover" src={result.cover}/>
                         <h3>{result.title}</h3>
                         <p>Artist: {result.artist}</p>
                         <p>Duration: {result.duration} </p>
-
+</Link>
                       </div>
     ))
-) : (<p>Found Nothing</p>)
+) : (
+<div className="search-not-found">
+    <Image src={cuteCat} alt="oops, not found"/>
+    <p>Oops audet.blog is new</p>
+    <p>We don't have what you are looking for yet but you can contact us to make a request</p>
+</div>)
 }
+        </div>
         </div>
     )
 }

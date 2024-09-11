@@ -1,62 +1,49 @@
-'use client'
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { useParams } from 'next/navigation'
-import { MusicBlog } from "@/types/media"
-import "./blog.css"
-import Comment from "@/app/components/comment/comment"
+import { Metadata, ResolvingMetadata } from 'next';
+import BlogClient from './blogClient'; // Adjust the path if needed
 
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+};
 
-export default function Page() {
-    const dburl = process.env.NEXT_PUBLIC_API_URL
-    const params= useParams()
-    const [blog, setBlog] = useState<MusicBlog | null>(null)
-        const id = params.id
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = params.id;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/aboutBlog`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  });
 
+  const blog = await response.json();
 
-    useEffect(()=>{
-        async function fetchData(){
-             const response = await axios.post(`${dburl}/aboutBlog`, {
-              id
-           })
-              setBlog(response.data.musicblog)
-        }         
+  const previousImages = (await parent).openGraph?.images || [];
 
-      
-        fetchData()
-       }, [])
-      
-       return(
-        <div className="blog-container">
-{
-  blog ?
-          <div className="blog"  key={blog._id}>  
-          <div className="blog-artist-info">
-<div className="artist-info">
-          <div className="blog-type">                      
-<small>{blog.type} | </small> 
-  <small>Released: {blog.releaseDate}</small>
-          </div>
-
-        <div><img className="music-cover" src={blog.cover}/></div>                      
-                        <h3>{blog.title}</h3>
-                        <p>By {blog.artist}</p>
-                        {/* <p>Duration: {blog.duration} </p> */}
-                        </div>
-<div className="blog-info">
-  <div className="blog-title-container"><h3 className="blog-title">{blog.blogTitle} </h3></div>
-
-  <p>{blog.description[0]}</p>
-  <p>{blog.description[1]}</p>
-  <p>{blog.description[2]}</p>
-
-          <Comment id={id}/>
-        </div>
-        </div>
-                      </div>
-                      : 
-                      <p>Loading...</p>
+  return {
+    title: blog.musicblog.blogTitle,
+    description: blog.musicblog.description[0],
+    openGraph: {
+      title: blog.musicblog.blogTitle,
+      description: blog.musicblog.description[0],
+      images: [blog.musicblog.cover, ...previousImages],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: blog.musicblog.blogTitle,
+      description: blog.musicblog.description[0],
+      images: [blog.musicblog.cover],
+    },
+  };
 }
-        </div>
-       )
+
+export default function Page({ params }: Props) {
+  return (
+    <div>
+      <BlogClient /> {/* This will render the client-side component */}
+    </div>
+  );
 }

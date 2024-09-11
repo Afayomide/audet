@@ -1,8 +1,8 @@
 import "./globals.css"
 
 export const metadata = {
-  title: 'AdotMusic',
-  description: 'All Your Favorite Music in One Place',
+  title: 'Audet Blog',
+  description: 'Everything and Anything Music',
 }
 
 

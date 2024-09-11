@@ -1,0 +1,16 @@
+.playmusic{
+    position: fixed;
+    bottom: 2vh;
+    background-color:#FF9505 ;
+    color: #ffffff;
+    font-size: 1.5rem;
+    left: 1rem;
+    z-index: 100;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  
