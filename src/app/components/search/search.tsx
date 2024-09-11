@@ -1,8 +1,9 @@
-"use client"
+'use client'
 import "./search.css"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react';
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { MusicBlog } from "@/types/media"
@@ -41,14 +42,14 @@ export default function Search() {
         <div className="search-result-blogs">
 { should ? (
     results.map((result)=>(
-          <div  key={result._id}>
+          <Suspense  key={result._id} fallback={<div>Loading search results...</div>}>
             <Link className="search-result-blog" href={result._id}>
                         <img className="music-cover" src={result.cover}/>
                         <h3>{result.title}</h3>
                         <p>Artist: {result.artist}</p>
                         <p>Duration: {result.duration} </p>
 </Link>
-                      </div>
+                      </Suspense>
     ))
 ) : (
 <div className="search-not-found">
