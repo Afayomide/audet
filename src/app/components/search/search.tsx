@@ -40,16 +40,17 @@ export default function Search() {
         <div className="search-result-blogs-container">
             <h3>Search Results for <span>{search}</span></h3>
         <div className="search-result-blogs">
+            <Suspense fallback={<div>Loading search results...</div>}>
 { should ? (
     results.map((result)=>(
-          <Suspense  key={result._id} fallback={<div>Loading search results...</div>}>
+          <div  key={result._id} >
             <Link className="search-result-blog" href={result._id}>
                         <img className="music-cover" src={result.cover}/>
                         <h3>{result.title}</h3>
                         <p>Artist: {result.artist}</p>
                         <p>Duration: {result.duration} </p>
 </Link>
-                      </Suspense>
+                      </div>
     ))
 ) : (
 <div className="search-not-found">
@@ -58,6 +59,7 @@ export default function Search() {
     <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
 </div>)
 }
+</Suspense>
         </div>
         </div>
     )
