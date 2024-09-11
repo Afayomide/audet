@@ -8,14 +8,14 @@ export default function FirstSection () {
    return(
     <div>
    <div className='welcome'>
-     <h2>Audet Blog</h2>
-      <p className='subscript'>   <Typewriter
+     {/* <h2>Audet Blog</h2> */}
+      <h2 className=''>   <Typewriter
   options={{
     strings: ['Everything Music!!', 'Anything Music!!'],
     autoStart: true,
     loop: true,
   }}/>
-</p>
+</h2>
    </div>
        
     </div>

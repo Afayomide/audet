@@ -23,7 +23,7 @@ export default function LatestMusicBlog () {
     }, [])
     return (
         <div className="home-latest-music-blogs-container">
-            <h3>Latest Music Blogs</h3>
+            <h3 className="latest-header">Latest Music Blogs</h3>
             <div className="home-latest-music-blogs">
              {
                 latestMusicBlog.map((musicBlog) => (
