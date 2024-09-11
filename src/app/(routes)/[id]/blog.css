@@ -1,0 +1,76 @@
+.blog{
+    margin: 2rem 2rem;
+}
+.blog-type{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: grey;
+}
+.blog-title{
+    margin-bottom: .5rem;
+    display: inline-block;
+    text-align: center;    
+    font-size: 2.3rem;
+    border-bottom: #FF9505 solid .2rem;
+    color: #FF9505;
+
+}
+.blog-title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blog-artist-info{
+    width: 80vw;
+    display: flex;
+}
+.artist-info{
+    position: fixed;
+
+}
+.blog-info{
+width: 70%;
+margin-left: 30%;
+}
+.blog-container{
+    min-height: 80vh; /* Minimum height is 80% of the viewport height */
+    height: auto; 
+}
+
+@media (max-width: 900px) {
+    .blog{
+        margin: 2rem 1rem;
+    }
+    .blog-artist-info{
+        width: 100%;
+      flex-direction: column;
+    }
+    .artist-info{
+        position: static;
+        width: 100%;
+    }
+    .blog-info{
+        width: 80%;
+        margin: auto;
+        }
+    .blog-title{
+        font-size: 1.5rem;
+    }
+    .blog-type{
+        font-size: 1rem;
+    }
+    .artist-info .music-cover {
+        width: 20vw;
+    } 
+    
+}
+
+@media (max-width: 400px) {
+    .artist-info .music-cover {
+        width: 40vw;
+    } 
+    .blog-info{
+        width: 100%;
+        margin: auto;
+        }
+}

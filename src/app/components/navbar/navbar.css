@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+ .mobile-nav{
+    display: none;
+  }
+  .header-container{
+     background-color: #FF9505;
+    margin: 0;
+    height: 10vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+ 
+  .header-container h1{
+      margin:  0;
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-style: normal;
+  }
+  .search{
+    width: 20vw;
+    border-radius: 1rem;
+    padding: .5rem .5rem;
+    border: solid white;
+  }
+  .search-form .search:focus{
+    border: solid white;
+    outline: none;
+  }
+.nav-link{
+    text-decoration: none;
+    color: white;
+}
+.nav-link:hover{
+   text-decoration: underline;
+}
+.nav-links-container .nav-link{
+    margin-left: 1rem;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+}
+.active{
+    background-color: white;
+    color: #FF9505;
+}
+.mobile-search-form{
+  display: none;
+}
+@media (max-width: 900px) {
+  .header-container{
+    display: none;
+  }
+.mobile-nav{
+  display: block;
+  background-color: #FF9505;
+  margin: 0;   
+  color: white;
+  padding: .5rem 1rem;
+}
+  .mobile-header-container{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ .show-nav-links{
+    display: flex;
+    flex-direction: column;
+ }
+ .hide-nav-links{
+    display: none;
+ }
+ .mobile-nav-links-container{
+  display: flex;
+  flex-direction: column;
+
+ }
+ .mobile-nav-links-container .mobile-nav-link{
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+ }
+
+ .mobile-nav-link:hover{
+  text-decoration: underline;
+}
+.mobile-search-form{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.mobile-search{
+  border-radius: 1rem;
+  padding: .9rem .5rem;
+  border: solid #FF9505 .1rem;
+  text-align: center;
+  width: 50vw;
+}
+.mobile-search-form .mobile-search:focus{
+  border: solid #FF9505 .2rem;
+  outline: none;
+}
+
+
+}
+

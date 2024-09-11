@@ -1,0 +1,25 @@
+.upload-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input-group{
+    width: 30vw;
+    display: flex;
+    flex-direction: column ;
+    margin-bottom: 1rem;
+}
+.input-group label{
+    text-align: start;
+    color: #df8d1a;
+}
+.input-group input, .input-group textarea{
+    padding: 0.2rem .5rem;
+    border-radius: .5rem;
+    height: 1.5rem;
+    border: solid #FF9505 .1rem;
+}
+.input-group input:focus, .input-group textarea{
+        outline:#724404;
+}
