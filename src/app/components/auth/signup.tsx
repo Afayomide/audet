@@ -11,7 +11,7 @@ export default function Signup () {
     const [email, setEmail] = useState("")
    
 
-        const fetchData = async (e:any) =>{
+        const signup = async (e:any) =>{
             e.preventDefault()
             try{
                 const response = await axios.post(`${apiUrl}/signup`, {
@@ -31,7 +31,7 @@ export default function Signup () {
     return (
         <div>
             <h3>Signup</h3>
-            <form onSubmit={fetchData} className="auth-form">
+            <form onSubmit={signup} className="auth-form">
                 <div className="input-group">
                  <label htmlFor="name">name: </label>
                 <input id="name" type="text" name="name" value={fullname}
