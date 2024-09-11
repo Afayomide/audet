@@ -3,7 +3,6 @@ import "./search.css"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react';
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { MusicBlog } from "@/types/media"
@@ -40,7 +39,6 @@ export default function Search() {
         <div className="search-result-blogs-container">
             <h3>Search Results for <span>{search}</span></h3>
         <div className="search-result-blogs">
-            <Suspense fallback={<div>Loading search results...</div>}>
 { should ? (
     results.map((result)=>(
           <div  key={result._id} >
@@ -59,7 +57,6 @@ export default function Search() {
     <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
 </div>)
 }
-</Suspense>
         </div>
         </div>
     )
