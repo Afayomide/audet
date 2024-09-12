@@ -3,16 +3,20 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { IComment } from "@/types/comment"
 import "./comment.css"
+import { useRouter } from 'next/navigation'
+import { useGlobalContext } from "@/context/globalContexts"
+import { toast } from "react-hot-toast"
 
 interface CommentProps {
     id: string;  // Define the type for the prop
   }
 
 export default function Comment( id:any){
-    const [userName, setUserName] = useState("")
+    const { error, setError, message, setMessage, isLoading, setIsLoading } = useGlobalContext();
     const [getComment, setGetComment] = useState(true)
     const [comments, setComments] = useState<IComment[]>([])
     const [text, setText] = useState("")
+    const router = useRouter()
 
 
 
@@ -21,8 +25,10 @@ export default function Comment( id:any){
       
         async function fetchComments() {
             try{
-            const response = await axios.get(`${dburl}/comment/${id.id}`);
+            const response = await axios.get(`${dburl}/comment/${id.id}`, );
             setComments(response.data)
+            console.log("getting comments")
+
             }
             catch(error){
                 console.error(error)
@@ -33,26 +39,42 @@ export default function Comment( id:any){
         }
         
         fetchComments()
-    }, [getComment])
+    }, [getComment, setGetComment])
 
     
     const dburl = process.env.NEXT_PUBLIC_API_URL
-    async function postComment(e:any,){
-        e.preventDefault()
-        try{
-          
-            const response = await axios.post(`${dburl}/comment/${id.id}`, {
-          userName, text })  
-    localStorage.setItem("storedName", userName )
+ 
+async function postComment(e: any) {
+    e.preventDefault();
+  
+    const postPromise = async () => {
+      const response = await axios.post(`${dburl}/comment/${id.id}`, { text }, {
+        withCredentials: true
+      });
+      return response; 
+    };
+  
+    toast.promise(postPromise(), {
+      loading: 'Posting your comment...',
+      success: (response) => {
+        console.log(response);
+        return 'Comment posted successfully!';
+      },
+      error: (error: any) => {
+        console.error(error);
+        if (error.response?.status === 401) {
+          router.push('./login');
+          setError('You have to be logged in to comment');
+          return 'Unauthorized: Please log in to comment.';
         }
-        catch(error){
-           console.error(error)
-        }
-        finally{
-            setGetComment(true)
-        }
-     
-   }     
+        return 'Something went wrong. Please try again.';
+      }
+    });
+  
+    setGetComment(true);
+  }
+
+   
 
     return (
         <div className="comments-container"> 

@@ -1,3 +1,11 @@
 body, html{
   margin: 0;
 }
+.toastify-custom {
+  background-color: #ffd79f; /* Custom background color */
+  color: white; /* Text color */
+}
+.toastify-toast-body {
+  background-color: #FF9505; /* Custom background color */
+  color: white; /* Text color */
+}

@@ -2,39 +2,88 @@
 import "./auth.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useRouter } from 'next/navigation';
+import { useGlobalContext } from "@/context/globalContexts";
+import {toast } from 'react-hot-toast';
+import Link from "next/link";
 
-export default function Signup () {
+export default function Login () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL
+    const router = useRouter(); // Use the router for navigation
+    axios.defaults.withCredentials = true;
+    const { isAuthenticated, setIsAuthenticated } = useGlobalContext();
+
+
 
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const [err, setErr] = useState("")
+
+    
    
 
-        const login = async (e:any) =>{
-            e.preventDefault()
-            try{
-                const response = await axios.post(`${apiUrl}/login`, {
-                 email,password
-                });   
-                console.log(response)
-              
-                const token = response.data.token
-                const { success } = response.data;
-      
-              if (success) {         
-                localStorage.setItem('authToken', token); 
-                setErr(success)
-              } else {
-                console.error('Login failed:', response.data.message);
-         setErr(response.data.message)
-              }
-            }
-            catch(error:any){
-              
-            }
+    useEffect(() => {
+      const checkAuth = async () => {
+        try {
+          const response = await axios.get(`${apiUrl}/checkAuth`, {
+            withCredentials: true
+          });
+  
+          if (response.status === 200) {
+            setIsAuthenticated(true)
+            toast("You are already logged in");
+            router.push("../")
+          } else {
+            setIsAuthenticated(false)
+          }
+        } catch (error) {
+          setIsAuthenticated(false);
+          console.log(error)
         }
-    
+      };
+  
+      checkAuth();
+    }, []);
+  
+    if (isAuthenticated === null) {
+      return <p>Loading...</p>; // Or a spinner/loading component
+    }
+  
+   
+
+    const login = async (e: any) => {
+      e.preventDefault();
+  
+      const loginPromise = async () => {
+        const response = await axios.post(`${apiUrl}/login`, {
+          email,
+          password
+        }, {
+          withCredentials: true
+        });
+  
+        return response;
+      };
+  
+      toast.promise(loginPromise(), {
+        loading: 'Logging in...',
+        success: (response) => {
+          console.log(response);
+          const { success } = response.data;
+  
+          if (success) {
+            router.push('/');
+            setIsAuthenticated(true);
+            return 'Login successful!';
+          } else {
+            throw new Error(response.data.message);
+          }
+        },
+        error: (error: any) => {
+          console.error('Login failed:', error);
+          return error.message || 'An error occurred';
+        }
+      });
+    };
 
     return (
         <div className="auth-container">
@@ -55,6 +104,8 @@ export default function Signup () {
 
                
                 <button type="submit">Login</button>
+                                    <Link href={"/forgot-password"}>forgot Password ?</Link>
+                <small>New user?<Link href={"/signup"}>signup</Link></small>
             </form>
 
         </div>

@@ -1,25 +1,78 @@
 'use client'
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import "./navbar.css"
 import { usePathname } from 'next/navigation'
 import { FaHamburger } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
+import { toast } from "react-hot-toast"
+import { useGlobalContext } from "@/context/globalContexts"
+
 
 
 
 export default function MobileNav () {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
     const pathname = usePathname()
     const [showNav, setShowNav] = useState(false)
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState("")
+    const { isAuthenticated, setIsAuthenticated } = useGlobalContext();
 
+
+    useEffect(() => {
+      const checkAuth = async () => {
+        try {
+          const response = await axios.get(`${apiUrl}/checkAuth`, {
+            withCredentials: true
+          });
+  
+          if (response.status === 200) {
+            setIsAuthenticated(true)
+            router.push("/")
+            console.log(response)
+          } else {
+            setIsAuthenticated(false)
+            
+          }
+        } catch (error) {
+          setIsAuthenticated(false);
+          console.log(error)
+        }
+      };
+  
+      checkAuth();
+    }, [setIsAuthenticated, isAuthenticated]);
+
+    const logout = async () => {
+        try {
+          const response = await axios.post(`${apiUrl}/logout`, {}, { withCredentials: true });
+          console.log(response.data.message); // Handle success message
+           const {success} = response.data
+           if(success) {
+            toast.success("Bye for now!")
+           }          
+            setIsAuthenticated(false)
+            setShowNav(false)
+           router.push("/")
+
+        } catch (error) {
+          toast.error("error while logging out")
+          console.error('Error logging out:', error);
+        }
+      };
+      
 
     async function handleSearch (e:any) {
         e.preventDefault()
             router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
       }
+
+      useEffect(() => {
+          setShowNav(false); 
+      }, [pathname]);
       
 
     function HandleShowNav () {
@@ -35,7 +88,7 @@ return (
 <nav >
     <div className="mobile-nav">
 <div className="mobile-header-container">
-    <h1><Link className= "nav-link" href="/">Audet Blog</Link></h1>
+    <h1><Link className= "nav-link" href="/">AUDET blog</Link></h1>
     
 
     
@@ -50,9 +103,15 @@ return (
     <div className="mobile-nav-links-container">
     <Link className={`mobile-nav-link ${pathname === '/genres' ? 'active' : ''}`} href="/genres">Genres</Link>
         <Link className={`mobile-nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Albums</Link>
-        <Link className={`mobile-nav-link ${pathname === '/signup' ? 'active' : ''}`} href="/signup">Signup</Link>
-        <Link className={`mobile-nav-link ${pathname === '/login' ? 'active' : ''}`} href="/login">Login</Link>
         <Link className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</Link>
+        {
+            !isAuthenticated ? (
+                <>        <Link className={`mobile-nav-link ${pathname === '/signup' ? 'active' : ''}`} href="/signup">Signup</Link>
+        <Link className={`mobile-nav-link ${pathname === '/login' ? 'active' : ''}`} href="/login">Login</Link>
+                    </>
+            ) : (<div><button onClick={logout} className="mobile-nav-logout">Logout</button></div>)
+        }
+
     </div>    
 </div>
 </div>

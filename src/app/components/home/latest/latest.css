@@ -19,9 +19,21 @@
     width: 10rem
 }
 .latest-header{
+    padding: 0;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #6b4b1e;
+    display: inline-block;
+    border-bottom: #6b4b1e solid .2rem;
+
+}
+.latest-header-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 500px) {
