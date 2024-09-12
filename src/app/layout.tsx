@@ -8,7 +8,7 @@ export const metadata = {
   description: 'Everything and Anything Music',
 }
 export const viewport: Viewport = {
-  themeColor: 'black',
+  themeColor: '#FF9505',
 }
 
 
