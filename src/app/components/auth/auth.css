@@ -1,3 +1,38 @@
 .auth-form{
-    margin:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.auth-form label{
+    display: block;
+    text-align: center;
+}   
+.auth-container{
+   margin-top: 10vh;
+}
+
+.auth-container h3{
+    text-align: center;
+}
+.input-group{
+    margin-bottom: 1.5rem;
+}
+.input-group input{
+    padding: 0.2rem .5rem;
+    border-radius: .5rem;
+    height: 1.5rem;
+    border: solid #FF9505 .1rem;}
+
+    .input-group input:focus{
+        outline:#724404;
+}
+
+.auth-form button{
+    background-color: #724404;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.2rem 0.5rem;
 }

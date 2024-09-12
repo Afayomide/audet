@@ -3,6 +3,7 @@ import "./globals.css"
 export const metadata = {
   title: 'Audet Blog',
   description: 'Everything and Anything Music',
+  themeColor: '#000000',
 }
 
 

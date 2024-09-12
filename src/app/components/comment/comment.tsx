@@ -14,14 +14,11 @@ export default function Comment( id:any){
     const [comments, setComments] = useState<IComment[]>([])
     const [text, setText] = useState("")
 
-    const User = localStorage.getItem("storedName") 
 
 
     useEffect(() =>{
 
-        if (User){
-            setUserName(User)
-        }
+      
         async function fetchComments() {
             try{
             const response = await axios.get(`${dburl}/comment/${id.id}`);
@@ -43,9 +40,7 @@ export default function Comment( id:any){
     async function postComment(e:any,){
         e.preventDefault()
         try{
-            if (User){
-                setUserName(localStorage.getItem("storedName") || "")
-            }
+          
             const response = await axios.post(`${dburl}/comment/${id.id}`, {
           userName, text })  
     localStorage.setItem("storedName", userName )
@@ -62,17 +57,6 @@ export default function Comment( id:any){
     return (
         <div className="comments-container"> 
         <form className="comment-form" onSubmit={postComment}>
-            {
-                !User ? (<input 
-                    className="comment-input-name"
-                    placeholder="enter a name"
-                     value={userName}
-             onChange={(e)=>{
-                setUserName(e.target.value)
-             }}
-             required
-            />):  <div className="name-text">{userName} :</div>
-            }
            
             <input 
             className="comment-input-text"

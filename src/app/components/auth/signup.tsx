@@ -29,7 +29,7 @@ export default function Signup () {
     
 
     return (
-        <div>
+        <div className="auth-container">
             <h3>Signup</h3>
             <form onSubmit={signup} className="auth-form">
                 <div className="input-group">
@@ -46,7 +46,7 @@ export default function Signup () {
                 </div>
                 <div className="input-group">
                  <label htmlFor="password">Password: </label>
-                <input id="password" type="text" name="password" value={password}
+                <input id="password" type="password" name="password" value={password}
                 onChange={(e) => {
                     setPassword(e.target.value)}}/>   
                 </div>
