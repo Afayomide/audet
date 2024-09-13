@@ -6,6 +6,8 @@ import { MusicBlog } from "@/types/media"
 import "./blog.css"
 import Comment from "@/app/components/comment/comment"
 import AudioPlayer from "@/app/components/audioPlayer/audio"
+import StyledTexts from '@/app/(routes)/[id]/sytledText';
+
 
 
 export default function BlogClient() {
@@ -21,6 +23,7 @@ export default function BlogClient() {
               id
            })
               setBlog(response.data.musicblog)
+              console.log(response.data.musicblog.highlights)
         }         
 
       
@@ -47,12 +50,14 @@ export default function BlogClient() {
 <div className="blog-info">
   <div className="blog-title-container"><h3 className="blog-title">{blog.blogTitle} </h3></div>
 
-  <p>{blog.description[0]}</p>
-  <p>{blog.description[1]}</p>
-  <p>{blog.description[2]}</p>
+  <StyledTexts description={blog.description} highlights={blog.highlights} />
+
 
           <Comment id={id}/>
-          <AudioPlayer src={blog.musicFilePath}/>
+          {
+          blog.musicFilePath ?  <AudioPlayer src={blog.musicFilePath}/>  : null
+          }
+         
         </div>
         </div>
                       </div>

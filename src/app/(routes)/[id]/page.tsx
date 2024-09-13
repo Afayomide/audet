@@ -6,6 +6,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 };
 
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata

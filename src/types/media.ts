@@ -10,7 +10,8 @@ export interface MusicBlog {
     genre: string;
     releaseDate: string;
     plays: number;
-    description: string;
+    description: [string];
+    highlights: [string];
     latest: boolean;
     trending: boolean;
     musicFilePath: string;

@@ -36,6 +36,16 @@ margin-left: 30%;
     min-height: 80vh; /* Minimum height is 80% of the viewport height */
     height: auto; 
 }
+.artist-info .music-cover {
+    width: 10vw;
+} 
+ .description{
+    font-size: 18px;
+    line-height: 1.6; /* 1.5 to 1.75 ratio */
+}
+.highlight{
+    color: #df8d1a;
+}
 
 @media (max-width: 900px) {
     .blog{
@@ -62,6 +72,11 @@ margin-left: 30%;
     .artist-info .music-cover {
         width: 20vw;
     } 
+    .artist-info .description{
+        font-size: 14px;
+        line-height: 1.6; /* 1.5 to 1.75 ratio */
+    }
+    
     
 }
 

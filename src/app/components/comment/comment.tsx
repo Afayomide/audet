@@ -57,7 +57,6 @@ async function postComment(e: any) {
     toast.promise(postPromise(), {
       loading: 'Posting your comment...',
       success: (response) => {
-        console.log(response);
         return 'Comment posted successfully!';
       },
       error: (error: any) => {

@@ -10,6 +10,7 @@ export default function Upload () {
     const [featuredArtists, setFeaturedArtists] = useState("")
     const [album, setAlbum] = useState("")
     const [type, setType] = useState("")
+    const [highlights, setHighlights] = useState("")
     const [blogTitle, setBlogTitle] = useState("")
     const [duration, setDuration] = useState("")
     const [description, setDescription] = useState("")
@@ -19,12 +20,14 @@ export default function Upload () {
     const [releaseDate, setReleaseDate] = useState("")
 
     const descriptionArray = description.split("\n").filter(paragraph => paragraph.trim() !== "");
+    const highlightsArray = highlights.split("\n").filter(paragraph => paragraph.trim() !== "");
+
 
         const fetchData = async (e:any) =>{
             e.preventDefault()
             try{
                 const response = await axios.put(`${apiUrl}/upload`, {
-                  title,artist,album, blogTitle,type, duration ,description : descriptionArray,genre,cover,musicFilePath,releaseDate
+                  title,artist,album, blogTitle,type, duration ,description : descriptionArray, highlights: highlightsArray ,genre,cover,musicFilePath,releaseDate
                 });   
                 console.log(response)
                 if(response.status === 200){
@@ -99,6 +102,12 @@ export default function Upload () {
                 <textarea id="description"  name="description" value={description}
                 onChange={(e) => {
                     setDescription(e.target.value)}}/>   
+                </div>
+                <div className="input-group">
+                 <label htmlFor="highlights">Hightlights: </label>
+                <textarea id="highlights"  name="highlights" value={highlights}
+                onChange={(e) => {
+                    setHighlights(e.target.value)}}/>   
                 </div>
                 <div className="input-group">
                  <label htmlFor="genre">Genre: </label>
