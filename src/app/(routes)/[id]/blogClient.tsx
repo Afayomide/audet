@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from 'next/navigation'
+import Image from "next/image"
 import { MusicBlog } from "@/types/media"
 import "./blog.css"
 import Comment from "@/app/components/comment/comment"
 import AudioPlayer from "@/app/components/audioPlayer/audio"
 import StyledTexts from '@/app/(routes)/[id]/sytledText';
+import headphonesPreloader from  "../../../../public/images/preloader.gif"
 
 
 
@@ -62,7 +64,11 @@ export default function BlogClient() {
         </div>
                       </div>
                       : 
+                      <div className="preloader-container" > 
                       <p>Loading...</p>
+                        <Image className="preloader" alt="preloader" src={headphonesPreloader}/>
+                        </div>
+
 }
         </div>
        )

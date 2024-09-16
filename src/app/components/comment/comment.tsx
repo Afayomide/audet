@@ -13,41 +13,33 @@ interface CommentProps {
 
 export default function Comment( id:any){
     const { error, setError, message, setMessage, isLoading, setIsLoading } = useGlobalContext();
-    const [getComment, setGetComment] = useState(true)
     const [comments, setComments] = useState<IComment[]>([])
     const [text, setText] = useState("")
     const router = useRouter()
+    const dburl = process.env.NEXT_PUBLIC_API_URL
 
 
-
-    useEffect(() =>{
-
-      
-        async function fetchComments() {
+   async function fetchComments() {
             try{
             const response = await axios.get(`${dburl}/comment/${id.id}`, );
             setComments(response.data)
             console.log("getting comments")
-
+             console.log(response.data)
             }
             catch(error){
                 console.error(error)
             }
-            finally{
-                setGetComment(false)
-            }
         }
-        
+    useEffect(() =>{        
         fetchComments()
-    }, [getComment, setGetComment])
+    }, [id])
 
     
-    const dburl = process.env.NEXT_PUBLIC_API_URL
  
 async function postComment(e: any) {
     e.preventDefault();
-  
-    const postPromise = async () => {
+    try{
+        const postPromise = async () => {
       const response = await axios.post(`${dburl}/comment/${id.id}`, { text }, {
         withCredentials: true
       });
@@ -56,7 +48,8 @@ async function postComment(e: any) {
   
     toast.promise(postPromise(), {
       loading: 'Posting your comment...',
-      success: (response) => {
+      success: (response) => {        
+        fetchComments();
         return 'Comment posted successfully!';
       },
       error: (error: any) => {
@@ -70,7 +63,13 @@ async function postComment(e: any) {
       }
     });
   
-    setGetComment(true);
+  }
+  catch(error){
+    console.log(error)
+    
+  }
+ 
+  
   }
 
    

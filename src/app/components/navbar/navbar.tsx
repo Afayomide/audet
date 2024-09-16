@@ -29,7 +29,6 @@ export default function Navbar () {
   
           if (response.status === 200) {
             setIsAuthenticated(true)
-            router.push("/")
             console.log(response)
           } else {
             setIsAuthenticated(false)

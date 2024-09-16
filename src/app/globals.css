@@ -9,3 +9,15 @@ body, html{
   background-color: #FF9505; /* Custom background color */
   color: white; /* Text color */
 }
+.preloader-container{
+  display: flex;
+  height: 70vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.preloader-container .preloader{
+  /* width: 10rem;
+  height: 8rem; */
+}

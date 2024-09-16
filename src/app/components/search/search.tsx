@@ -7,6 +7,7 @@ import { useEffect,useState } from "react"
 import axios from "axios"
 import { MusicBlog } from "@/types/media"
 import cuteCat from "../../../../public/images/cutecat.jpeg"
+import headphonesPreloader from "../../../../public/images/preloader.gif"
 
 
 
@@ -15,6 +16,7 @@ export default function Search() {
     const search = searchTerm.get('q')
     const [should, setShould] = useState(true)
     const [results, setResults] = useState<MusicBlog[]>([])
+    const [loading, setLoading] = useState(true)
 
     const dburl = process.env.NEXT_PUBLIC_API_URL
 
@@ -31,6 +33,9 @@ export default function Search() {
                 console.log(error)
                 setShould(false)
             }
+            finally{
+                    setLoading(false) // Set loading to false after data fetch completes
+            }
         } 
       
         fetchData()
@@ -38,26 +43,39 @@ export default function Search() {
     return(
         <div className="search-result-blogs-container">
             <h3>Search Results for <span>{search}</span></h3>
-        <div className="search-result-blogs">
-{ should ? (
-    results.map((result)=>(
-          <div  key={result._id} >
-            <Link className="search-result-blog" href={result._id}>
-                        <img className="music-cover" src={result.cover}/>
-                        <h3>{result.title}</h3>
-                        <p>Artist: {result.artist}</p>
-                        <p>Duration: {result.duration} </p>
-</Link>
-                      </div>
-    ))
-) : (
-<div className="search-not-found">
-    <Image src={cuteCat} alt="oops, not found"/>
-    <p>Oops audet.blog is new</p>
-    <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
-</div>)
-}
-        </div>
+            <div className="search-result-blogs">
+                {loading ? (
+                   <div className="preloader-container" > 
+                   <p>Loading...</p>
+                     <Image className="preloader" alt="preloader" src={headphonesPreloader}/>
+                     </div>
+                ) : should ? (
+                    results.length > 0 ? (
+                        results.map((result) => (
+                            <div key={result._id}>
+                                <Link className="search-result-blog" href={result._id}>
+                                    <img className="music-cover" src={result.cover} alt={result.title} />
+                                    <h3>{result.title}</h3>
+                                    <p>Artist: {result.artist}</p>
+                                    <p>Duration: {result.duration} </p>
+                                </Link>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="search-not-found">
+                            <Image src={cuteCat} alt="Oops, not found" />
+                            <p>Oops, audet.blog is new</p>
+                            <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
+                        </div>
+                    )
+                ) : (
+                    <div className="search-not-found">
+                        <Image src={cuteCat} alt="Oops, not found" />
+                        <p>Oops, audet.blog is new</p>
+                        <p>We don&apos;t have what you are looking for yet but you can contact us to make a request</p>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

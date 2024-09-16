@@ -31,7 +31,10 @@ export default function LatestMusicBlog () {
                 latestMusicBlog.map((musicBlog) => (
                       <div  key={musicBlog._id}>
                         <Link className="home-latest-music-blog" href={musicBlog._id}>
-                        <img className="music-cover" src={musicBlog.cover}/>
+                        <img 
+                        onLoad={() => console.log("loading")}
+                        className="music-cover" 
+                        src={musicBlog.cover}/>
                         <h3>{musicBlog.blogTitle}</h3>
                         {/* <p>Artist: {musicBlog.artist}</p> */}
                         </Link>
