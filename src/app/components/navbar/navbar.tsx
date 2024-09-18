@@ -9,6 +9,8 @@ import MobileNav from "./mobilenav"
 import axios from "axios";
 import { useGlobalContext } from "@/context/globalContexts"
 import { toast } from "react-hot-toast";
+import { Suspense } from "react";
+import CustomLoader from "@/app/customLoader";
 
 
 export default function Navbar () {
@@ -67,7 +69,7 @@ export default function Navbar () {
       
 
 return (
-
+<Suspense fallback={<CustomLoader/>}>
 <header>
 <nav className="header-container">
     <h1><Link className= "nav-link" href="/">AUDET blog</Link></h1>
@@ -98,6 +100,7 @@ return (
 </nav>
 <MobileNav/>
 </header>
+</Suspense>
 )
 }
 

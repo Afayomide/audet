@@ -2,6 +2,8 @@ import "./globals.css"
 import { Viewport } from "next"
 import { GlobalProvider } from "@/context/globalContexts"
 import { Toaster } from "react-hot-toast"
+import { Suspense } from "react"
+import CustomLoader from "./customLoader"
 
 export const metadata = {
   title: 'Audet Blog',
@@ -35,7 +37,7 @@ export default function RootLayout({
       color: "#00000",
     },
   }}/>
-        <GlobalProvider> {children}</GlobalProvider>
+      <Suspense fallback={<CustomLoader/>}><GlobalProvider> {children}</GlobalProvider></Suspense>  
         </body>
     </html>
   )
