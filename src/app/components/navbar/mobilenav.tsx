@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "./navbar.css"
@@ -15,12 +15,16 @@ import { useGlobalContext } from "@/context/globalContexts"
 
 export default function MobileNav () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL
+    const genreTerm = useSearchParams()
+    const query = genreTerm.get('')
     const pathname = usePathname()
     const [showNav, setShowNav] = useState(false)
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState("")
     const { isAuthenticated, setIsAuthenticated } = useGlobalContext();
+    const [showSearch, setShowSearch] = useState("mobile-search-form")
 
+   
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -71,6 +75,12 @@ export default function MobileNav () {
 
       useEffect(() => {
           setShowNav(false); 
+          if(pathname === '/login' || pathname === '/signup' || pathname === "/forgot-password") {
+            setShowSearch("none")
+          }
+          else{
+            setShowSearch('mobile-search-form')
+          }
       }, [pathname]);
       
 
@@ -84,7 +94,7 @@ export default function MobileNav () {
     }
 return (
 
-<nav >
+<nav>
     <div className="mobile-nav">
 <div className="mobile-header-container">
     <h1><Link className= "nav-link" href="/">AUDET blog</Link></h1>
@@ -100,8 +110,8 @@ return (
 </div>
 <div className={showNav ? "show-nav-links" : "hide-nav-links"}>
     <div className="mobile-nav-links-container">
-    <Link className={`mobile-nav-link ${pathname === '/genres' ? 'active' : ''}`} href="/genres">Genres</Link>
-        <Link className={`mobile-nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Albums</Link>
+    <Link className={`mobile-nav-link ${pathname === '/genres'  && query === 'pop'? 'active' : ''}`} href="/genres?=pop">Pop</Link>
+    <Link className={`mobile-nav-link ${pathname === '/genres'  && query === 'afrobeat' ? 'active' : ''}`} href="/genres?=afrobeat">Afrobeats</Link>
         <Link className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</Link>
         {
             !isAuthenticated ? (
@@ -114,7 +124,7 @@ return (
     </div>    
 </div>
 </div>
-<form onSubmit={handleSearch} className="mobile-search-form">
+<form onSubmit={handleSearch} className={`${showSearch}`}>
                 <input className="mobile-search" type="search" placeholder="search music, album or artist"
                 value={searchTerm} 
                 onChange={(e) => setSearchTerm(e.target.value)}

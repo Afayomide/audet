@@ -26,11 +26,20 @@
 }
 .artist-info{
     position: fixed;
-
+    top: 10vh; /* or any value outside the viewport */
+    transition: top 0.5s ease; /* Adjust duration and easing as needed */
+    z-index: 10;
+    margin-top: 1rem;
+    
 }
+
+.sticky {
+    top: 0;
+}
+
 .blog-info{
 width: 70%;
-margin-left: 30%;
+margin-left: 35%;
 }
 .blog-container{
     min-height: 80vh; /* Minimum height is 80% of the viewport height */
@@ -38,10 +47,17 @@ margin-left: 30%;
 }
 .artist-info .music-cover {
     width: 10vw;
+    height: auto;
 } 
+.artist-info .music-cover-preloader{
+    width: 5vw;
+    height: auto;
+}
+
  .description{
     font-size: 18px;
-    line-height: 1.6; /* 1.5 to 1.75 ratio */
+    line-height: 1.8; /* 1.5 to 1.75 ratio */
+    letter-spacing: .03rem; /* Space between characters */
 }
 .highlight{
     color: #df8d1a;
@@ -60,7 +76,7 @@ margin-left: 30%;
         width: 100%;
     }
     .blog-info{
-        width: 80%;
+        width: 95%;
         margin: auto;
         }
     .blog-title{
@@ -69,21 +85,30 @@ margin-left: 30%;
     .blog-type{
         font-size: 1rem;
     }
-    .artist-info .music-cover {
+    .artist-info  .music-cover {
         width: 20vw;
     } 
+    .artist-info .music-cover-preloader{
+        width: 10vw;
+        height: auto;
+    }
     .artist-info .description{
         font-size: 14px;
         line-height: 1.6; /* 1.5 to 1.75 ratio */
-    }
+        letter-spacing: .03rem;    }
     
     
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .artist-info .music-cover {
         width: 40vw;
+        height: auto;
     } 
+    .artist-info .music-cover-preloader{
+        width: 30vw;
+        height: auto;
+    }
     .blog-info{
         width: 100%;
         margin: auto;

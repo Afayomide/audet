@@ -9,7 +9,10 @@ export default function PagesLayout({
     return (
         <div>
             <Navbar />
-            {children}
+            <div className="contents">
+                        {children}
+    
+            </div>
             <Footer />
         </div>
     );

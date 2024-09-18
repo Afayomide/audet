@@ -8,7 +8,8 @@ import "./blog.css"
 import Comment from "@/app/components/comment/comment"
 import AudioPlayer from "@/app/components/audioPlayer/audio"
 import StyledTexts from '@/app/(routes)/[id]/sytledText';
-import headphonesPreloader from  "../../../../public/images/preloader.gif"
+import CustomLoader from "@/app/customLoader"
+import ImageLoader from "@/app/imageLoader"
 
 
 
@@ -16,6 +17,9 @@ export default function BlogClient() {
     const dburl = process.env.NEXT_PUBLIC_API_URL
     const params= useParams()
     const [blog, setBlog] = useState<MusicBlog | null>(null)
+    const [imageLoading, setImageLoading] = useState(true)
+    const [isSticky, setIsSticky] = useState(false)
+
         const id = params.id
 
 
@@ -30,7 +34,30 @@ export default function BlogClient() {
 
       
         fetchData()
+
+           // Listen to scroll event
+           const handleScroll = () => {
+            const navbarHeight = 100; // Example height of navbar
+            if (window.scrollY > navbarHeight) {
+                setIsSticky(true)
+            } else {
+                setIsSticky(false)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
        }, [])
+
+
+    const handleImageLoad = () => {
+      setImageLoading(false)
+      console.log("finished")
+  }
+
       
        return(
         <div className="blog-container">
@@ -38,13 +65,24 @@ export default function BlogClient() {
   blog ?
           <div className="blog"  key={blog._id}>  
           <div className="blog-artist-info">
-<div className="artist-info">
+
+    <div className={`artist-info ${isSticky ? 'sticky' : ''}`}>
           <div className="blog-type">                      
 <small>{blog.type} | </small> 
   <small>Released: {blog.releaseDate}</small>
           </div>
 
-        <div><img className="music-cover" src={blog.cover}/></div>                      
+      <div className="blog-image">
+      {imageLoading && <ImageLoader styleClass = "music-cover-preloader"/>}
+          <img           
+          onLoad={handleImageLoad}
+          className="music-cover" 
+          src={blog.cover}       
+          alt="Music cover"
+          onError={() => setImageLoading(false)}
+          style={{ display: imageLoading ? 'none' : 'block' }}
+          />
+        </div>               
                         <h3>{blog.title}</h3>
                         <p>By {blog.artist}</p>
                         {/* <p>Duration: {blog.duration} </p> */}
@@ -64,10 +102,7 @@ export default function BlogClient() {
         </div>
                       </div>
                       : 
-                      <div className="preloader-container" > 
-                      <p>Loading...</p>
-                        <Image className="preloader" alt="preloader" src={headphonesPreloader}/>
-                        </div>
+                     <CustomLoader/>
 
 }
         </div>

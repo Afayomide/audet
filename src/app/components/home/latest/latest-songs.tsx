@@ -3,10 +3,13 @@ import axios from "axios"
 import "./latest.css"
 import { MusicBlog } from "@/types/media";
 import Link from "next/link";
+import ImageLoader from "@/app/imageLoader";
 
 export default function LatestMusicBlog () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const [latestMusicBlog, setLatestMusicBlog ] = useState<MusicBlog[]>([])
+    const [imageLoading, setImageLoading] = useState(true)
+
 
     useEffect(() =>{
         const fetchData = async () =>{
@@ -21,6 +24,11 @@ export default function LatestMusicBlog () {
         }
         fetchData()
     }, [])
+
+    const handleImageLoad = () => {
+        setImageLoading(false)
+        console.log("finished")
+    }
     return (
         <div className="home-latest-music-blogs-container">
             <div className="latest-header-container">
@@ -31,10 +39,13 @@ export default function LatestMusicBlog () {
                 latestMusicBlog.map((musicBlog) => (
                       <div  key={musicBlog._id}>
                         <Link className="home-latest-music-blog" href={musicBlog._id}>
+                        {imageLoading && <ImageLoader styleClass = "music-cover-preloader"/>}
                         <img 
-                        onLoad={() => console.log("loading")}
+                        onLoad={handleImageLoad}
                         className="music-cover" 
-                        src={musicBlog.cover}/>
+                        src={musicBlog.cover}
+                        style={{ display: imageLoading ? 'none' : 'block' }}
+                        />
                         <h3>{musicBlog.blogTitle}</h3>
                         {/* <p>Artist: {musicBlog.artist}</p> */}
                         </Link>

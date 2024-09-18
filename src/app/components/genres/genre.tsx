@@ -1,8 +1,8 @@
 'use client'
-import "./search.css"
+import "../search/search.css"
 import Image from "next/image"
 import Link from "next/link"
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { MusicBlog } from "@/types/media"
@@ -10,14 +10,20 @@ import cuteCat from "../../../../public/images/cutecat.jpeg"
 import CustomLoader from "@/app/customLoader"
 
 
-export default function Search() {
+export default function Genre() {
+    const router = useRouter()
     const searchTerm = useSearchParams()
-    const search = searchTerm.get('q')
+    const search = searchTerm.get('')
     const [should, setShould] = useState(true)
     const [results, setResults] = useState<MusicBlog[]>([])
     const [loading, setLoading] = useState(true)
 
     const dburl = process.env.NEXT_PUBLIC_API_URL
+    console.log(search)
+
+    if (search == null){
+       router.push("./")
+    }
 
     useEffect(()=>{
         async function fetchData(){
@@ -41,7 +47,7 @@ export default function Search() {
        },[search])
     return(
         <div className="search-result-blogs-container">
-            <h3>Search Results for <span>{search}</span></h3>
+            <h3><span>{search}</span> blogs </h3>
             <div className="search-result-blogs">
                 {loading ? (
                   <CustomLoader/>
@@ -51,9 +57,7 @@ export default function Search() {
                             <div key={result._id}>
                                 <Link className="search-result-blog" href={result._id}>
                                     <img className="music-cover" src={result.cover} alt={result.title} />
-                                    <h3>{result.title}</h3>
-                                    <p>Artist: {result.artist}</p>
-                                    <p>Duration: {result.duration} </p>
+                                   <h3>{result.blogTitle} </h3>
                                 </Link>
                             </div>
                         ))

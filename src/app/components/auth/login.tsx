@@ -104,8 +104,8 @@ export default function Login () {
 
                
                 <button type="submit">Login</button>
-                                    <Link href={"/forgot-password"}>forgot Password ?</Link>
-                <small>New user?<Link href={"/signup"}>signup</Link></small>
+                                    <Link className="auth-form-link" href={"/forgot-password"}>forgot Password ?</Link>
+                <small>New user?<Link className="auth-form-link" href={"/signup"}>signup</Link></small>
             </form>
 
         </div>

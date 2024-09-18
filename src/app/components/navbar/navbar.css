@@ -54,6 +54,9 @@
 .mobile-search-form{
   display: none;
 }
+.none{
+  display: none;
+}
 .nav-logout{
   background-color: #6b4b1e;
   color: white;
@@ -121,6 +124,7 @@ width: fit-content;
   justify-content: center;
   margin-top: 2rem;
 }
+
 .mobile-search{
   border-radius: 1rem;
   padding: .9rem .5rem;

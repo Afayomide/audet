@@ -18,6 +18,14 @@
 .home-latest-music-blog h3, .home-latest-music-blog .music-cover{
     width: 10rem
 }
+.home-latest-music-blog .image-preloader-container{
+   text-align: center;
+}
+.home-latest-music-blog .music-cover-preloader{
+    width: 5rem;
+    height: auto;
+    margin:auto;
+}
 .latest-header{
     padding: 0;
     text-align: center;
@@ -49,6 +57,12 @@
     .home-latest-music-blog h3, .home-latest-music-blog .music-cover{
         width: 9rem
     }
+    .home-latest-music-blog .music-cover-preloader{
+        width: 5rem;
+        height: auto;
+        margin: auto;
+    }
+
     .home-latest-music-blog h3{
         font-size: .8rem;
     }

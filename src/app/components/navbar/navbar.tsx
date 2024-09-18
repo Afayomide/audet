@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 // import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import "./navbar.css"
@@ -13,7 +13,8 @@ import { toast } from "react-hot-toast";
 
 export default function Navbar () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
+    const genreTerm = useSearchParams()
+    const query = genreTerm.get('')
     const router = useRouter()
     const pathname = usePathname()
     const [searchTerm, setSearchTerm] = useState("")
@@ -79,8 +80,8 @@ return (
     </form>
 
     <div className="nav-links-container">
-    <Link className={`nav-link ${pathname === '/genre' ? 'active' : ''}`} href="/genre">Genre</Link>
-        <Link className={`nav-link ${pathname === '/lastestalbums' ? 'active' : ''}`} href="/latestalbums">Latest Songs</Link>
+    <Link className={`nav-link ${pathname === '/genres' && query === 'pop' ? 'active' : ''}`} href="/genres?=pop">Pop</Link>
+    <Link className={`nav-link ${pathname === '/genres' && query === 'afrobeat' ? 'active' : ''}`} href="/genres?=afrobeat">Afrobeat</Link>
         <Link className={`nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</Link>
         {
             !isAuthenticated ? 

@@ -29,7 +29,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="auth-container">
-      <h1>Forgot Password</h1>
+      <h3>Forgot Password</h3>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className='input-group'>
         <label htmlFor="email">Email:</label>
