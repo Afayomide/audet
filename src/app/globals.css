@@ -34,6 +34,6 @@ body, html{
 }
 @media (max-width: 800px) {
   .contents{
-    padding-bottom: 10vh;
+    padding-bottom: 20vh;
   }
 }

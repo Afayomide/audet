@@ -52,8 +52,7 @@ export default function Search() {
                                 <Link className="search-result-blog" href={result._id}>
                                     <img className="music-cover" src={result.cover} alt={result.title} />
                                     <h3>{result.title}</h3>
-                                    <p>Artist: {result.artist}</p>
-                                    <p>Duration: {result.duration} </p>
+                                    {/* <p>Duration: {result.duration} </p> */}
                                 </Link>
                             </div>
                         ))

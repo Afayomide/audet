@@ -12,9 +12,6 @@ export default function Login () {
     const router = useRouter(); // Use the router for navigation
     axios.defaults.withCredentials = true;
     const { isAuthenticated, setIsAuthenticated } = useGlobalContext();
-
-
-
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
 

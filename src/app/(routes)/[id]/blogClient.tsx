@@ -37,7 +37,10 @@ export default function BlogClient() {
 
            // Listen to scroll event
            const handleScroll = () => {
-            const navbarHeight = 100; // Example height of navbar
+            const navbar = document.querySelector('.header-container') as HTMLElement;            
+            const navbarHeight = navbar ? navbar.offsetHeight : 100;
+
+
             if (window.scrollY > navbarHeight) {
                 setIsSticky(true)
             } else {

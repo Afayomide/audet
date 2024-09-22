@@ -30,7 +30,6 @@
     transition: top 0.5s ease; /* Adjust duration and easing as needed */
     z-index: 10;
     margin-top: 1rem;
-    
 }
 
 .sticky {

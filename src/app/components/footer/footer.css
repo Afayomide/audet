@@ -1,9 +1,21 @@
 footer{
     background-color: #FF9505;
     color: white;
-    padding: 2rem 0;
+    padding: 0 2rem;
     position: absolute; /* Positions the footer at the bottom */
     bottom: 0;
     width: 100%;
     z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.footer-link{
+    text-decoration: none;
+    color: white;
+}
+.footer-contact-link {
+color: white;
+font-size: 1.5rem;
+margin-left: 2rem;
 }
