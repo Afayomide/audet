@@ -9,6 +9,7 @@ export default function LatestMusicBlog () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const [latestMusicBlog, setLatestMusicBlog ] = useState<MusicBlog[]>([])
     const [imageLoading, setImageLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() =>{
@@ -17,8 +18,11 @@ export default function LatestMusicBlog () {
                 const response = await axios.get(`${apiUrl}/latestMusicBlogs`);   
                 console.log(response)     
                 setLatestMusicBlog(response.data)
+                setLoading(false); 
+
             }
             catch{
+                setLoading(false); 
 
             }
         }
@@ -34,6 +38,12 @@ export default function LatestMusicBlog () {
             <div className="latest-header-container">
                             <h3 className="latest-header">Latest Music Blogs</h3>
             </div>
+            {
+                loading ? (<div className="home-blogs-loader-container">
+                    <h6>Loading...</h6>
+                    <ImageLoader styleClass="home-blogs-loader"/>
+                    </div>) :
+                (
             <div className="home-latest-music-blogs">
              {
                 latestMusicBlog.map((musicBlog) => (
@@ -56,6 +66,8 @@ export default function LatestMusicBlog () {
                     ))
               } 
             </div>
+                )
+            }
               
         </div>
     )
