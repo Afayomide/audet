@@ -24,3 +24,9 @@
 .input-group input:focus, .input-group textarea{
         outline:#724404;
 }
+.upload-container h3{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #724404;
+}

@@ -72,7 +72,7 @@ async function postComment(e: any) {
   
   }
 
-   
+  console.log(comments) 
 
     return (
         <div className="comments-container"> 
@@ -93,9 +93,9 @@ async function postComment(e: any) {
             <h4>Comments</h4>
             <div>
 
-                {comments.length > 1 ? (comments.map((comment)=> (
-                  <div className="each-comment-container"  key={comment._id}>
-                    <div className="each-comment-username">{comment.userName} :</div>
+                {comments.length > 0 ? (comments.map((comment)=> (
+                  <div className="each-comment-container"  key={comment.id}>
+                    <div className="each-comment-username">{comment.username} :</div>
                     <div className="each-comment-text">{comment.text}</div>
                   </div>
                 ))) : <div className="no-comment">Be the first to drop a comment</div>}

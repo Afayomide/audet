@@ -47,8 +47,8 @@ export default function LatestMusicBlog () {
             <div className="home-latest-music-blogs">
              {
                 latestMusicBlog.map((musicBlog) => (
-                      <div  key={musicBlog._id}>
-                        <Link className="home-latest-music-blog" href={musicBlog._id}>
+                      <div  key={musicBlog.id}>
+                        <Link className="home-latest-music-blog" href={musicBlog.id.toString()}>
                         {imageLoading && <ImageLoader styleClass = "music-cover-preloader"/>}
                         <img 
                         onLoad={handleImageLoad}
@@ -56,7 +56,7 @@ export default function LatestMusicBlog () {
                         src={musicBlog.cover}
                         style={{ display: imageLoading ? 'none' : 'block' }}
                         />
-                        <h3>{musicBlog.blogTitle}</h3>
+                        <h3>{musicBlog.blog_title}</h3>
                         {/* <p>Artist: {musicBlog.artist}</p> */}
                         </Link>
                         {/* <p>Duration: {musicBlog.duration} </p>

@@ -1,7 +1,7 @@
 export interface IComment {
-    _id: string;
+    id: string;
     text: string;
-    userName: string;
-    musicBlogId: string;
+    username: string;
+    musicblogid: string;
     timestamp: Date;
   }

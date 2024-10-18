@@ -48,8 +48,8 @@ export default function Search() {
                 ) : should ? (
                     results.length > 0 ? (
                         results.map((result) => (
-                            <div key={result._id}>
-                                <Link className="search-result-blog" href={result._id}>
+                            <div key={result.id}>
+                                <Link className="search-result-blog" href={result.id.toString()}>
                                     <img className="music-cover" src={result.cover} alt={result.title} />
                                     <h3>{result.title}</h3>
                                     {/* <p>Duration: {result.duration} </p> */}

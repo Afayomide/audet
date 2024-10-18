@@ -1,14 +1,14 @@
 export interface MusicBlog {
-    _id: string;
+    id: string;
     title: string;
-    blogTitle: string;
+    blog_title: string;
     type: string
     artist: string;
     cover: string;
     duration: number;
     album: string;
     genre: string;
-    releaseDate: string;
+    release_date: string;
     plays: number;
     description: [string];
     highlights: [string];

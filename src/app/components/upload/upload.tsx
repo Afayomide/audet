@@ -50,7 +50,7 @@ export default function Upload () {
     
 
     return (
-        <div>
+        <div className="upload-container">
             <h3>Upload  Music</h3>
             <form onSubmit={fetchData} className="upload-form">
                 <div className="input-group">
