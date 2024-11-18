@@ -24,7 +24,7 @@ export default function MobileNav() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/checkAuth`, {
+        const response = await axios.get(`${apiUrl}/auth/checkAuth`, {
           withCredentials: true,
         });
         if (response.status === 200) {
