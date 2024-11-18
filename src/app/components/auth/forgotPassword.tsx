@@ -13,7 +13,7 @@ export default function ForgotPassword() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/forgot-password`, {
         email,
       });
 
