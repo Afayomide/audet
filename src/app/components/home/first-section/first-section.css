@@ -1,25 +1,139 @@
-.welcome{
-    color: #a06410;
+.welcome {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+}
+.welcome-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem; /* Add space between buttons */
+  margin-top: 20px;
+  overflow: hidden; /* Prevent any content from overflowing */
+}
+.welcome-buttons a {
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+.welcome-buttons a:after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+  background-color: white;
+  transition: top 0.4s ease;
+  z-index: -1;
+  border-radius: 2rem;
 }
 
-.welcome h2{
-    font-size: 2rem;
-    margin: 0;
-    margin-left: 8rem;
-    margin-top: 2rem;
+.welcome-buttons a:hover::after {
+  top: 0;
+  width: 100%;
+  opacity: 1;
+}
+
+.welcome-buttons a:hover {
+  color: orange;
+}
+.welcome-buttons a:nth-child(1) {
+  margin-right: 1rem;
+}
+
+.welcome h2 {
+  font-size: 5rem;
+  margin: 0;
+  width: 50%;
+  height: 40vh;
+}
+.welcome h2 p {
+  margin: 0;
+}
+.tape-recorder {
+width: 20%;
+height: 10rem;
+}
+.hero-woman {
+    
+}
+
+.hero-images {
+    overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+}
+.hero-images div{
+    width: 100%;
+    display: flex;
+    z-index: 3;
+    padding-top: 30rem;
+}
+.neon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.9; /* Adjust opacity as needed */
+    z-index: 1; /* Ensure it's behind other images */
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
 }
 .subscript {
-    vertical-align: sub !important;
-    font-size: smaller;
+  vertical-align: sub !important;
+  font-size: smaller;
+}
+@media (max-width: 800px) {
+  .welcome h2 {
+    font-size: 4rem;
+    margin: 0;
   }
-  
+}
+
 @media (max-width: 500px) {
-    .welcome{
-              margin-top: 2rem;
-    }
-    .welcome h2{
-        font-size: 1.5rem;
-        text-align: center;
-        margin: 0;
-    }
+  .welcome {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: start;
+    padding-top: 2rem;
+  }
+  .welcome h2{
+    height: 20vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+  .welcome-buttons {
+    width: 100%;
+  }
+
+  .welcome h2 div {
+    width: 100vw;
+    font-size: 2.5rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+  .tape-recorder {
+width: 50%;
+  }
+  .hero-images{
+    flex-direction: column;
+  }
+  .hero-woman {
+      width: 90%
+  }
 }

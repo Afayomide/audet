@@ -9,9 +9,7 @@ body, html{
   font-weight: 500;
   background-color: #fff9f0;
 }
-.contents{
-  padding-bottom: 20vh;
-}
+
 .toastify-custom {
   background-color: #ffd79f; /* Custom background color */
   color: white; /* Text color */
@@ -33,7 +31,5 @@ body, html{
   height: auto;
 }
 @media (max-width: 800px) {
-  .contents{
-    padding-bottom: 20vh;
-  }
+
 }

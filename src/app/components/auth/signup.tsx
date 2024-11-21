@@ -48,14 +48,14 @@ export default function Signup () {
         const signup = async (e:any) =>{
             e.preventDefault()
             try{
-                const response = await axios.post(`${apiUrl}/signup`, {
+                const response = await axios.post(`${apiUrl}/auth/signup`, {
                   fullname,username,email,password
                 });   
                 const { success } = response.data;
 
                 if(success){
                     toast.success("Signup successful!");
-                    router.push("../")
+                    router.push("/login")
                 }
                 else{
                     toast.error("Signup failed!");

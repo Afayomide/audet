@@ -20,6 +20,7 @@ export default function MobileNav() {
   const [searchTerm, setSearchTerm] = useState("");
   const { isAuthenticated, setIsAuthenticated } = useGlobalContext();
   const [showSearch, setShowSearch] = useState("mobile-search-form");
+  const [orangeBg, setOrangeBg] = useState("")
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -74,7 +75,11 @@ export default function MobileNav() {
       pathname === "/forgot-password"
     ) {
       setShowSearch("none");
-    } else {
+    } 
+    else if (pathname === "/"){
+      setOrangeBg("orange-bg")
+    }
+    else {
       setShowSearch("mobile-search-form");
     }
   }, [pathname]);
@@ -160,7 +165,7 @@ export default function MobileNav() {
           </div>
         </div>
       </div>
-      <form onSubmit={handleSearch} className={`${showSearch}`}>
+      <form onSubmit={handleSearch} className={`${showSearch} ${orangeBg}`}>
         <input
           className="mobile-search"
           type="search"

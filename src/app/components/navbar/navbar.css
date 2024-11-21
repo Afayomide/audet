@@ -12,6 +12,10 @@
     align-items: center;
     justify-content: space-around;
   }
+  .orange-bg{
+    background-color: #FF9505;
+    margin-top: 0;
+  }
  
   .header-container h1{
       margin:  0;
@@ -20,6 +24,7 @@
       font-weight: 900;
       font-style: normal;
   }
+
   .search{
     width: 20vw;
     border-radius: 1rem;
@@ -122,7 +127,7 @@ width: fit-content;
 .mobile-search-form{
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  padding: 2rem 0;
 }
 
 .mobile-search{
